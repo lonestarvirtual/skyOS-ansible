@@ -26,3 +26,7 @@
         project_src: "{{ skyOS_dir }}"
         pull: True
         state: present
+      register: output
+
+    - debug:
+        var: output
