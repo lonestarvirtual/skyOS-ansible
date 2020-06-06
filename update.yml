@@ -1,0 +1,16 @@
+---
+- hosts: all
+
+  tasks:
+    - name: Login to GitHub registry
+      docker_login:
+        registry: docker.pkg.github.com
+        username: "{{ item.key }}"
+        password: "{{ item.value }}"
+      with_dict: "{{ github_key }}"
+
+    - name: Download and force recreate skyOS containers
+      docker_compose:
+        project_src: "{{ skyOS_dir }}"
+        pull: True
+        state: present
