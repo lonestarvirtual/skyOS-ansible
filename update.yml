@@ -2,6 +2,18 @@
 - hosts: all
 
   tasks:
+    # - name: Ensure pip modules are installed (Python 2)
+    #   pip:
+    #     name:
+    #       - docker-py
+    #       - docker-compose
+
+    - name: Ensure pip modules are installed (Python 3)
+      pip:
+        name:
+          - docker
+          - docker-compose
+
     - name: Login to GitHub registry
       docker_login:
         registry: docker.pkg.github.com
